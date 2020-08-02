@@ -38,6 +38,8 @@ public class VideoDetail extends AppCompatActivity {
 
         videoView = findViewById(R.id.videoView);
         videoView.setVideoURI(Uri.parse("https://jzvd.nathen.cn/video/2a101070-170bad88892-0007-1823-c86-de200.mp4"));
+        videoView.start();
+//        videoView.setVideoPath("");
     }
 
 }

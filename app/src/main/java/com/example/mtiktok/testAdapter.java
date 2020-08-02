@@ -1,6 +1,7 @@
 package com.example.mtiktok;
 
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,16 +28,16 @@ public class testAdapter extends RecyclerView.Adapter<testAdapter.VideoViewHolde
     @Override
     public VideoViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         Context context = viewGroup.getContext();
-        int layoutIdForListItem = R.layout.image_item;
+        int layoutIdForListItem = R.layout.video_item;
         LayoutInflater inflater = LayoutInflater.from(context);
         boolean shouldAttachToParentImmediately = false;
 
-        View view = inflater.inflate(layoutIdForListItem, viewGroup, shouldAttachToParentImmediately);
+        View view = inflater.inflate(layoutIdForListItem, viewGroup,shouldAttachToParentImmediately);
 
         VideoViewHolder videoViewHolder = new VideoViewHolder(view);
 
-        videoViewHolder.imageView.setImageResource(R.mipmap.pic);
-
+        videoViewHolder.videoView.setVideoURI(Uri.parse("https://jzvd.nathen.cn/video/2a101070-170bad88892-0007-1823-c86-de200.mp4"));
+        videoViewHolder.videoView.start();
         Log.d(TAG, "onCreateViewHolder: number of ViewHolders created: " + viewHolderCount);
         viewHolderCount++;
         return videoViewHolder;
@@ -55,20 +56,15 @@ public class testAdapter extends RecyclerView.Adapter<testAdapter.VideoViewHolde
 
     public class VideoViewHolder extends RecyclerView.ViewHolder {
 
-//        private VideoView videoView;
-//
-//
-//        public VideoViewHolder(@NonNull View itemView) {
-//            super(itemView);
-//            videoView = itemView.findViewById(R.id.videoView);
-//        }
-        private ImageView imageView;
+        private VideoView videoView;
+
 
         public VideoViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.img);
-
+            videoView = itemView.findViewById(R.id.videoView);
         }
+
+
 
     }
 }

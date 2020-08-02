@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class RecyclerViewActivity extends AppCompatActivity implements mAdapter.ListItemClickListener {
 
-    private static final int NUM_LIST_ITEMS = 10;
+    private static final int NUM_LIST_ITEMS = 1;
     private static final String TAG = "mRvTest";
     private RecyclerView mRvlist;
     private mAdapter mAdapter;
@@ -37,7 +37,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements mAdapter.
         /*
          * The GreenAdapter is responsible for displaying each item in the list.
          */
-        mAdapter = new mAdapter(NUM_LIST_ITEMS,this);
+//        mAdapter = new mAdapter(NUM_LIST_ITEMS,this);
 
         testAdapter = new testAdapter(NUM_LIST_ITEMS);
 
