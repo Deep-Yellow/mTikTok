@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         open(R.id.button1, VideoDetail.class);
         open(R.id.button2,RecyclerViewActivity.class);
+        open(R.id.button3, VideoList.class);
     }
 
     private void open(int buttonId, final Class<?> clz) {
