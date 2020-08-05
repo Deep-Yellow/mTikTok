@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".VideoList"></activity>
-        <activity android:name=".RecyclerViewActivity" />
+<!--        <activity android:name=".RecyclerViewActivity" />-->
         <activity android:name=".VideoDetail" />
         <activity android:name=".MainActivity">
             <intent-filter>

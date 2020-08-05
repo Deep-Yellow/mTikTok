@@ -7,13 +7,23 @@
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="18sp" />
 
     <com.example.mtiktok.widget.MyVideoPlayer
         android:id="@+id/mp_video"
         android:layout_width="match_parent"
-        android:layout_height="500dp" />
+        android:layout_height="wrap_content" >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="test1"
+            android:textSize="20dp"
+            android:textColor="#EA5246"
+            android:background="#000000">
+
+        </TextView>
+    </com.example.mtiktok.widget.MyVideoPlayer>
 
 </LinearLayout>

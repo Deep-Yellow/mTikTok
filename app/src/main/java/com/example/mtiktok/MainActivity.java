@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         open(R.id.button1, VideoDetail.class);
-        open(R.id.button2,RecyclerViewActivity.class);
+//        open(R.id.button2,RecyclerViewActivity.class);
         open(R.id.button3, VideoList.class);
     }
 
