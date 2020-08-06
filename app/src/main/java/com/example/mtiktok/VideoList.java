@@ -32,7 +32,9 @@ public class VideoList extends AppCompatActivity {
         setContentView(R.layout.activity_video_list);
         rvList = findViewById(R.id.rv_list);
         urlList = new ArrayList<>();
-        urlList.add("https://jzvd.nathen.cn/video/2a101070-170bad88892-0007-1823-c86-de200.mp4");
+        for(int i =0;i<10;i++){
+            urlList.add("https://jzvd.nathen.cn/video/2a101070-170bad88892-0007-1823-c86-de200.mp4");
+        }
         videoAdapter = new ListVideoAdapter(urlList);
         rvList.setLayoutManager(new LinearLayoutManager(VideoList.this));
         rvList.setAdapter(videoAdapter);
