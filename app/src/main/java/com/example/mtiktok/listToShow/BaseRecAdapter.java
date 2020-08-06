@@ -11,11 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by ch
- * on 2017/12/19.14:24
- * 作用：
- */
+
 
 public abstract class BaseRecAdapter<T, K extends BaseRecViewHolder> extends RecyclerView.Adapter<K> {
 
@@ -43,6 +39,8 @@ public abstract class BaseRecAdapter<T, K extends BaseRecViewHolder> extends Rec
     public BaseRecAdapter(List<T> list) {
         this.list = list;
     }
+
+    public void setData(List<T> list){this.list=list;}
 
     @Override
     public K onCreateViewHolder(ViewGroup parent, int viewType) {

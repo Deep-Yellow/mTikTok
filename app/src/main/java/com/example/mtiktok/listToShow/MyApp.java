@@ -6,12 +6,7 @@ import android.content.Context;
 import com.example.mtiktok.widget.MyFileNameGenerator;
 import com.danikula.videocache.HttpProxyCacheServer;
 
-/**
- * 作者： ch
- * 时间： 2018/10/12 0012-上午 11:34
- * 描述：
- * 来源：
- */
+
 
 public class MyApp extends Application {
 

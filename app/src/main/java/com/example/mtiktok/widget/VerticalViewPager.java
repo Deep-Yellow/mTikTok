@@ -9,12 +9,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-/**
- * 作者： ch
- * 时间： 2018/7/30 0030-下午 2:53
- * 描述：
- * 来源：
- */
+
 
 
 public class VerticalViewPager extends ViewPager {

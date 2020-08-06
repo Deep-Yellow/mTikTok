@@ -14,13 +14,13 @@
     <com.example.mtiktok.widget.MyVideoPlayer
         android:id="@+id/mp_video"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="300dp" >
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="test1"
             android:textSize="20dp"
-            android:textColor="#EA5246"
+            android:textColor="#FFFFFF"
             android:background="#000000">
 
         </TextView>

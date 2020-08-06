@@ -6,16 +6,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.mtiktok.listToShow.BaseRecAdapter;
 import com.example.mtiktok.listToShow.BaseRecViewHolder;
+import com.example.mtiktok.widget.ApiService;
 import com.example.mtiktok.widget.MyVideoPlayer;
+import com.example.mtiktok.widget.VideoInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class VideoList extends AppCompatActivity {
     private ArrayList<String> urlList;
@@ -32,14 +41,39 @@ public class VideoList extends AppCompatActivity {
         setContentView(R.layout.activity_video_list);
         rvList = findViewById(R.id.rv_list);
         urlList = new ArrayList<>();
-        for(int i =0;i<10;i++){
-            urlList.add("https://jzvd.nathen.cn/video/2a101070-170bad88892-0007-1823-c86-de200.mp4");
-        }
         videoAdapter = new ListVideoAdapter(urlList);
         rvList.setLayoutManager(new LinearLayoutManager(VideoList.this));
         rvList.setAdapter(videoAdapter);
         addListener();
+        getData();
+    }
 
+    private void getData(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://beiyou.bytedance.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiService apiService = retrofit.create(ApiService.class);
+        apiService.getVideos().enqueue(new Callback<ArrayList<VideoInfo.Video>>() {
+            @Override
+            public void onResponse(Call<ArrayList<VideoInfo.Video>> call, Response<ArrayList<VideoInfo.Video>> response) {
+                if(response.body()!=null){
+                    ArrayList<VideoInfo.Video> videos = response.body();
+                    Log.d("eeee",videos.toString());
+                    for(VideoInfo.Video v :  videos){
+                        Log.d("ffff",v.toString());
+                        urlList.add("https"+v.feedurl.substring(4));
+                    }
+                    videoAdapter.setData(urlList);
+                    videoAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<VideoInfo.Video>> call, Throwable t) {
+                Log.d("retrofit", t.getMessage());
+            }
+        });
     }
 
     private void addListener() {
@@ -137,6 +171,8 @@ public class VideoList extends AppCompatActivity {
         public ListVideoAdapter(List<String> list) {
             super(list);
         }
+
+
 
         @Override
         public void onHolder(VideoViewHolder holder, String bean, int position) {
