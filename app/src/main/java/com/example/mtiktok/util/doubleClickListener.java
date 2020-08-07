@@ -3,10 +3,7 @@ package com.example.mtiktok.util;
 import android.view.MotionEvent;
 import android.view.View;
 
-/**
- * Created by Administrator on 2018/4/24.
- * 双击
- */
+
 
 public class doubleClickListener implements View.OnTouchListener{
 

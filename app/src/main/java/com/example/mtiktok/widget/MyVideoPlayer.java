@@ -14,13 +14,6 @@ import com.danikula.videocache.HttpProxyCacheServer;
 import cn.jzvd.JzvdStd;
 
 
-/**
- * 作者： ch
- * 时间： 2018/8/17 0017-下午 5:14
- * 描述：
- * 来源：
- */
-
 
 public class MyVideoPlayer extends JzvdStd {
     public RelativeLayout rl_touch_help;

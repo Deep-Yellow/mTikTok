@@ -19,12 +19,7 @@ import java.lang.reflect.Field;
 
 import butterknife.BindView;
 
-/**
- * 作者： ch
- * 时间： 2018/7/30 0030-下午 2:55
- * 描述：
- * 来源：
- */
+
 
 
 public class VideoFragment extends BaseFragment {
