@@ -1,29 +1,22 @@
 package com.example.mtiktok;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.VideoView;
+
 
 import com.example.mtiktok.adapter.VerticalViewPagerAdapter;
-import com.example.mtiktok.util.doubleClickListener;
+
 import com.example.mtiktok.widget.ApiService;
 import com.example.mtiktok.widget.VideoInfo;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.example.mtiktok.widget.VerticalViewPager2;
-import com.yqw.hotheart.HeartFrameLayout;
-import com.yqw.hotheart.minterface.DoubleClickListener;
-import com.yqw.hotheart.minterface.SimpleClickListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,8 +45,6 @@ public class VideoDetail extends AppCompatActivity {
         ButterKnife.bind(this);
         initView();
         addListener();
-
-
     }
     private void addListener() {
         srlPage.setEnableAutoLoadMore(false);

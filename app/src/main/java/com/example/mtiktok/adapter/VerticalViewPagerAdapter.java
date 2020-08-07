@@ -14,12 +14,7 @@ import com.example.mtiktok.fragment.VideoFragment;
 
 import java.util.List;
 
-/**
- * 作者： ch
- * 时间： 2018/7/30 0030-下午 3:42
- * 描述：
- * 来源：
- */
+
 
 
 public class VerticalViewPagerAdapter extends PagerAdapter {

@@ -7,18 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.example.mtiktok.listToShow.BaseRecAdapter;
-import com.example.mtiktok.listToShow.BaseRecViewHolder;
+import com.example.mtiktok.adapter.ListVideoAdapter;
 import com.example.mtiktok.widget.ApiService;
 import com.example.mtiktok.widget.MyVideoPlayer;
 import com.example.mtiktok.widget.VideoInfo;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,6 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class VideoList extends AppCompatActivity {
     private ArrayList<String> urlList;
+    private ArrayList<String> desList;
     private RecyclerView rvList;
     private ListVideoAdapter videoAdapter;
     private int firstVisibleItem;
@@ -41,6 +37,7 @@ public class VideoList extends AppCompatActivity {
         setContentView(R.layout.activity_video_list);
         rvList = findViewById(R.id.rv_list);
         urlList = new ArrayList<>();
+        desList = new ArrayList<>();
         videoAdapter = new ListVideoAdapter(urlList);
         rvList.setLayoutManager(new LinearLayoutManager(VideoList.this));
         rvList.setAdapter(videoAdapter);
@@ -63,8 +60,10 @@ public class VideoList extends AppCompatActivity {
                     for(VideoInfo.Video v :  videos){
                         Log.d("ffff",v.toString());
                         urlList.add("https"+v.feedurl.substring(4));
+                        desList.add(v.description);
                     }
                     videoAdapter.setData(urlList);
+                    videoAdapter.setDes(desList);
                     videoAdapter.notifyDataSetChanged();
                 }
             }
@@ -165,46 +164,46 @@ public class VideoList extends AppCompatActivity {
 
 
 
-    class ListVideoAdapter extends BaseRecAdapter<String, VideoViewHolder> {
-
-
-        public ListVideoAdapter(List<String> list) {
-            super(list);
-        }
-
-
-
-        @Override
-        public void onHolder(VideoViewHolder holder, String bean, int position) {
-            holder.mp_video.setUp(bean, "第" + position + "个视频", MyVideoPlayer.STATE_NORMAL);
-            if (position == 0) {
-                holder.mp_video.startVideo();
-            }
-            Glide.with(context).load(bean).into(holder.mp_video.thumbImageView);
-            holder.tv_title.setText("第" + position + "个视频");
-        }
-
-        @Override
-        public VideoViewHolder onCreateHolder() {
-            return new VideoViewHolder(getViewByRes(R.layout.item_video));
-
-        }
-
-
-    }
-
-    public class VideoViewHolder extends BaseRecViewHolder {
-        public View rootView;
-        public MyVideoPlayer mp_video;
-        public TextView tv_title;
-
-        public VideoViewHolder(View rootView) {
-            super(rootView);
-            this.rootView = rootView;
-            this.mp_video = rootView.findViewById(R.id.mp_video);
-            this.tv_title = rootView.findViewById(R.id.tv_title);
-        }
-
-    }
+//    class ListVideoAdapter extends BaseRecAdapter<String, VideoViewHolder> {
+//
+//
+//        public ListVideoAdapter(List<String> list) {
+//            super(list);
+//        }
+//
+//
+//
+//        @Override
+//        public void onHolder(VideoViewHolder holder, String bean, int position) {
+//            holder.mp_video.setUp(bean, "第" + position + "个视频", MyVideoPlayer.STATE_NORMAL);
+//            if (position == 0) {
+//                holder.mp_video.startVideo();
+//            }
+//            Glide.with(context).load(bean).into(holder.mp_video.thumbImageView);
+//            holder.tv_title.setText("第" + position + "个视频");
+//        }
+//
+//        @Override
+//        public VideoViewHolder onCreateHolder() {
+//            return new VideoViewHolder(getViewByRes(R.layout.item_video));
+//
+//        }
+//
+//
+//    }
+//
+//    public class VideoViewHolder extends BaseRecViewHolder {
+//        public View rootView;
+//        public MyVideoPlayer mp_video;
+//        public TextView tv_title;
+//
+//        public VideoViewHolder(View rootView) {
+//            super(rootView);
+//            this.rootView = rootView;
+//            this.mp_video = rootView.findViewById(R.id.mp_video);
+//            this.tv_title = rootView.findViewById(R.id.tv_title);
+//        }
+//
+//    }
 
 }
