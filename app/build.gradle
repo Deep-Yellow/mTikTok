@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.mtiktok"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -57,5 +57,7 @@ dependencies {
     //网络请求
     implementation "com.squareup.retrofit2:retrofit:2.8.1"
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+    implementation 'com.github.KevinYou128:HotHeart:v1.2'
 
 }

@@ -7,17 +7,31 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.VideoView;
 
 import com.example.mtiktok.adapter.VerticalViewPagerAdapter;
+import com.example.mtiktok.util.doubleClickListener;
+import com.example.mtiktok.widget.ApiService;
+import com.example.mtiktok.widget.VideoInfo;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.example.mtiktok.widget.VerticalViewPager2;
+import com.yqw.hotheart.HeartFrameLayout;
+import com.yqw.hotheart.minterface.DoubleClickListener;
+import com.yqw.hotheart.minterface.SimpleClickListener;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +41,7 @@ public class VideoDetail extends AppCompatActivity {
     VerticalViewPager2 vvpBackPlay;
     @BindView(R.id.srl_page)
     SmartRefreshLayout srlPage;
+
     private List<String> urlList;
     private VerticalViewPagerAdapter pagerAdapter;
 
@@ -37,6 +52,8 @@ public class VideoDetail extends AppCompatActivity {
         ButterKnife.bind(this);
         initView();
         addListener();
+
+
     }
     private void addListener() {
         srlPage.setEnableAutoLoadMore(false);
@@ -97,15 +114,30 @@ public class VideoDetail extends AppCompatActivity {
 
     private void makeData() {
         urlList = new ArrayList<>();
-        urlList.add("https://jzvd.nathen.cn/video/2a101070-170bad88892-0007-1823-c86-de200.mp4");
-        urlList.add("https://jzvd.nathen.cn/video/2a101070-170bad88892-0007-1823-c86-de200.mp4");
-        urlList.add("https://jzvd.nathen.cn/video/2a101070-170bad88892-0007-1823-c86-de200.mp4");
-        urlList.add("https://jzvd.nathen.cn/video/2a101070-170bad88892-0007-1823-c86-de200.mp4");
-        urlList.add("https://jzvd.nathen.cn/video/2a101070-170bad88892-0007-1823-c86-de200.mp4");
-        urlList.add("https://jzvd.nathen.cn/video/2a101070-170bad88892-0007-1823-c86-de200.mp4");
-        urlList.add("https://jzvd.nathen.cn/video/2a101070-170bad88892-0007-1823-c86-de200.mp4");
-        urlList.add("https://jzvd.nathen.cn/video/2a101070-170bad88892-0007-1823-c86-de200.mp4");
-        urlList.add("https://jzvd.nathen.cn/video/2a101070-170bad88892-0007-1823-c86-de200.mp4");
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://beiyou.bytedance.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiService apiService = retrofit.create(ApiService.class);
+        apiService.getVideos().enqueue(new Callback<ArrayList<VideoInfo.Video>>() {
+            @Override
+            public void onResponse(Call<ArrayList<VideoInfo.Video>> call, Response<ArrayList<VideoInfo.Video>> response) {
+                if(response.body()!=null){
+                    ArrayList<VideoInfo.Video> videos = response.body();
+                    Log.d("eeee",videos.toString());
+                    for(VideoInfo.Video v :  videos){
+                        Log.d("ffff",v.toString());
+                        urlList.add("https"+v.feedurl.substring(4));
+                    }
+                    pagerAdapter.setUrlList(urlList);
+                    pagerAdapter.notifyDataSetChanged();
+                }
+            }
+            @Override
+            public void onFailure(Call<ArrayList<VideoInfo.Video>> call, Throwable t) {
+                Log.d("retrofit", t.getMessage());
+            }
+        });
     }
 //    private Button buttonPlay;
 //    private Button buttonPause;

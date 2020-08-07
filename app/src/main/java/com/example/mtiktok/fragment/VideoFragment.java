@@ -2,6 +2,7 @@ package com.example.mtiktok.fragment;
 
 import android.app.Activity;
 import android.graphics.Point;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -11,6 +12,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.bumptech.glide.Glide;
 import com.example.mtiktok.R;
 import com.example.mtiktok.widget.MyVideoPlayer;
+import com.yqw.hotheart.HeartFrameLayout;
+import com.yqw.hotheart.minterface.DoubleClickListener;
 
 import java.lang.reflect.Field;
 
@@ -31,6 +34,8 @@ public class VideoFragment extends BaseFragment {
     RelativeLayout rlBackRight;
     @BindView(R.id.dl_back_play)
     DrawerLayout dlBackPlay;
+    @BindView(R.id.heart)
+    HeartFrameLayout heartFrameLayout;
     private String url;
     public static final String URL = "URL";
 
@@ -41,7 +46,12 @@ public class VideoFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-
+        heartFrameLayout.setOnDoubleClickListener(new DoubleClickListener() {
+            @Override
+            public void onDoubleClick(View view) {
+                Log.d("lsn","双击了");
+            }
+        });
         url = getArguments().getString(URL);
         Glide.with(context)
                 .load(url)
